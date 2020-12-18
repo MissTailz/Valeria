@@ -8,9 +8,15 @@ defmodule Valeria.Command.Karma do
 
     if user == nil do
       Reddit.create_user(%{id: author, karma: 1})
-    else
-      Api.create_message(message.channel_id, to_string(user.karma))
     end
+
+    Api.create_message(message.channel_id,
+      file:
+        Valeria.Native.draw_reddit_profile(
+          Reddit.get_user(author).karma,
+          message.author.username
+        )
+    )
 
     :ok
   end

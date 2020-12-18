@@ -16,9 +16,10 @@ defmodule Valeria.Consumer do
     Event.handle_reaction_add(reaction)
   end
 
-  def handle_event({:MESSAGE_REACTION_REMOVE, reaction, _ws_state})do
+  def handle_event({:MESSAGE_REACTION_REMOVE, reaction, _ws_state}) do
     Event.handle_reaction_remove(reaction)
   end
+
   def handle_event(_event) do
     :noop
   end

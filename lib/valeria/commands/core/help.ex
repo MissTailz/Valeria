@@ -1,7 +1,7 @@
 defmodule Valeria.Command.Help do
   @behaviour Valeria.Command
-  def perform(_arguments, _message) do
-    {:ok, number} = Valeria.Native.add(1, 2)
-    IO.puts to_string(number)
+  def perform(_arguments, message) do
+    alias Nostrum.Api
+    Api.create_message(message.channel_id, "no")
   end
 end

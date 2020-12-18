@@ -9,8 +9,9 @@ defmodule Valeria.Event.UpvoteAdd do
 
     if user == nil do
       Reddit.create_user(%{id: author, karma: 1})
-    else
-      Reddit.update_user(user, %{karma: user.karma + 1})
+      user = Reddit.get_user(author)
     end
+
+    Reddit.update_user(user, %{karma: user.karma + 1})
   end
 end

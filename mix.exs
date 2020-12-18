@@ -5,8 +5,9 @@ defmodule Valeria.MixProject do
     [
       app: :valeria,
       version: "0.1.0",
-      build_embedded: Mix.env == :prod,
-      start_permanent: Mix.env == :prod,
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      compilers: [:rustler] ++ Mix.compilers(),
       rustler_crates: [
         valeria_nativenif: [
           path: "native/valeria",
