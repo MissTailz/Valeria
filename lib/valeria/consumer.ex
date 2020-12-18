@@ -10,10 +10,20 @@ defmodule Valeria.Consumer do
 
   def handle_event(event) do
     case event do
-      {:MESSAGE_CREATE, message, _ws_state} -> Command.handle_message(message)
-      {:MESSAGE_REACTION_ADD, reaction, _ws_state} -> Event.handle_reaction_add(reaction)
-      {:MESSAGE_REACTION_REMOVE, reaction, _ws_state} -> Event.handle_reaction_remove(reaction)
-      _ -> :noop
+      {:MESSAGE_CREATE, message, _ws_state} ->
+        Command.handle_message(message)
+
+      {:MESSAGE_REACTION_ADD, reaction, _ws_state} ->
+        Event.handle_reaction_add(reaction)
+
+      {:MESSAGE_REACTION_REMOVE, reaction, _ws_state} ->
+        Event.handle_reaction_remove(reaction)
+
+      {:MESSAGE_UPDATE, message, _ws_state} ->
+        Event.handle_message_update(message)
+
+      _ ->
+        :noop
     end
   end
 end

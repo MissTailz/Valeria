@@ -1,4 +1,6 @@
 defmodule Valeria.Event do
+  alias Valeria.Command
+
   alias Valeria.Event.{
     UpvoteAdd,
     UpvoteRemove,
@@ -7,6 +9,10 @@ defmodule Valeria.Event do
     # StarAdd,
     # StarRemove
   }
+
+  def handle_message_update(message) do
+    Command.handle_message(message)
+  end
 
   def handle_reaction_add(reaction) do
     name =
