@@ -1,7 +1,7 @@
 use Mix.Config
 
 config :nostrum,
-  token: "Nzg5MTgyODk2NTI2MTk2NzM2.X9uV2A.ZMduaX1FVXvIkzUxGxSCcP7qnmM",
+  token: System.get_env("TOKEN"),
   num_shards: :auto
 
 config :porcelain, driver: Porcelain.Driver.Basic
