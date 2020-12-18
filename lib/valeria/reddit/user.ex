@@ -1,4 +1,4 @@
-defmodule Brain.Reddit.RedditUser do
+defmodule Valeria.Reddit.RedditUser do
   use Ecto.Schema
   import Ecto.Changeset
 
