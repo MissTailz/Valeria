@@ -1,4 +1,4 @@
-# NIF for Elixir.Brain.Native
+# NIF for Elixir.Valeria.Native
 
 ## To build the NIF module:
 
@@ -9,14 +9,10 @@
 ## To load the NIF:
 
 ```elixir
-defmodule Brain.Native do
-    use Rustler, otp_app: <otp-app>, crate: "brain_native"
+defmodule Valeria.Native do
+    use Rustler, otp_app: <otp-app>, crate: "valeria_nativenif"
 
     # When your NIF is loaded, it will override this function.
     def add(_a, _b), do: :erlang.nif_error(:nif_not_loaded)
 end
 ```
-
-## Examples
-
-[This](https://github.com/hansihe/NifIo) is a complete example of a NIF written in Rust.

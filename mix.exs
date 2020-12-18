@@ -7,7 +7,7 @@ defmodule Valeria.MixProject do
       version: "0.1.0",
       compilers: [:rustler] ++ Mix.compilers(),
       rustler_crates: [
-        valeria: [
+        valeria_nativenif: [
           path: "native/valeria",
           mode: if(Mix.env() == :prod, do: :release, else: :debug)
         ]
