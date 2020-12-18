@@ -3,9 +3,9 @@ defmodule Valeria.Event do
     UpvoteAdd,
     UpvoteRemove,
     DownvoteAdd,
-    DownvoteRemove,
-    StarAdd,
-    StarRemove
+    DownvoteRemove
+    # StarAdd,
+    # StarRemove
   }
 
   def handle_reaction_add(reaction) do
@@ -19,9 +19,6 @@ defmodule Valeria.Event do
 
       "downvote" ->
         DownvoteAdd.perform(reaction)
-
-      "star" ->
-        StarAdd.perform(reaction)
 
       _ ->
         :ok
@@ -39,9 +36,6 @@ defmodule Valeria.Event do
 
       "downvote" ->
         DownvoteRemove.perform(reaction)
-
-      "star" ->
-        StarRemove.perform(reaction)
 
       _ ->
         :ok

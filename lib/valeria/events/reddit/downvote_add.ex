@@ -4,14 +4,11 @@ defmodule Valeria.Event.DownvoteAdd do
 
   def perform(reaction) do
     {:ok, message} = Api.get_channel_message(reaction.channel_id, reaction.message_id)
-    author = message.author.id
-    user = Reddit.get_user(author)
+    user = Reddit.get_user(message.author.id)
 
-    if user == nil do
-      Reddit.create_user(%{id: author, karma: 1})
-      user = Reddit.get_user(author)
+    case user do
+      nil -> Reddit.create_user(%{id: message.author.id, karma: -1})
+      _ -> Reddit.update_user(user, %{karma: user.karma - 1})
     end
-
-    Reddit.update_user(user, %{karma: user.karma - 1})
   end
 end

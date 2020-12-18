@@ -4,8 +4,7 @@ defmodule Valeria.Event.UpvoteRemove do
 
   def perform(reaction) do
     {:ok, message} = Api.get_channel_message(reaction.channel_id, reaction.message_id)
-    author = message.author.id
-    user = Reddit.get_user(author)
+    user = Reddit.get_user(message.author.id)
     Reddit.update_user(user, %{karma: user.karma - 1})
   end
 end

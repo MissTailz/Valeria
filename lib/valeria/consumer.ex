@@ -8,19 +8,12 @@ defmodule Valeria.Consumer do
     Consumer.start_link(__MODULE__)
   end
 
-  def handle_event({:MESSAGE_CREATE, message, _ws_state}) do
-    Command.handle_message(message)
-  end
-
-  def handle_event({:MESSAGE_REACTION_ADD, reaction, _ws_state}) do
-    Event.handle_reaction_add(reaction)
-  end
-
-  def handle_event({:MESSAGE_REACTION_REMOVE, reaction, _ws_state}) do
-    Event.handle_reaction_remove(reaction)
-  end
-
-  def handle_event(_event) do
-    :noop
+  def handle_event(event) do
+    case event do
+      {:MESSAGE_CREATE, message, _ws_state} -> Command.handle_message(message)
+      {:MESSAGE_REACTION_ADD, reaction, _ws_state} -> Event.handle_reaction_add(reaction)
+      {:MESSAGE_REACTION_REMOVE, reaction, _ws_state} -> Event.handle_reaction_remove(reaction)
+      _ -> :noop
+    end
   end
 end

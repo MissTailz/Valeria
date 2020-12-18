@@ -6,8 +6,9 @@ defmodule Valeria.Command.Karma do
     author = message.author.id
     user = Reddit.get_user(author)
 
-    if user == nil do
-      Reddit.create_user(%{id: author, karma: 1})
+    case user do
+      nil -> Reddit.create_user(%{id: author, karma: 1})
+      _ -> :ok
     end
 
     Api.create_message(message.channel_id,
