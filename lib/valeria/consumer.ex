@@ -22,6 +22,9 @@ defmodule Valeria.Consumer do
       {:MESSAGE_UPDATE, message, _ws_state} ->
         Event.handle_message_update(message)
 
+      {:READY, bot, _ws_state} ->
+        Event.handle_on_ready(bot)
+
       _ ->
         :noop
     end

@@ -11,7 +11,8 @@ defmodule Valeria.MixProject do
       rustler_crates: [
         valeria_nativenif: [
           path: "native/valeria",
-          mode: if(Mix.env() == :prod, do: :release, else: :debug)
+          # if(Mix.env() == :prod, do: :release, else: :debug)
+          mode: :release
         ]
       ],
       deps: deps()
@@ -28,10 +29,11 @@ defmodule Valeria.MixProject do
   defp deps do
     [
       {:nostrum, "~> 0.4"},
-      {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
+      {:credo, "~> 1.0", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.0.0-rc.3", only: :dev, runtime: false},
       {:postgrex, "~> 0.15"},
       {:ecto_sql, "~> 3.2"},
-      {:rustler, "~> 0.21.1"}
+      {:rustler, github: "rusterlium/rustler", ref: "e343b8ca", sparse: "rustler_mix"}
     ]
   end
 end
